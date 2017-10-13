@@ -1,9 +1,20 @@
-function marketReducer(state = { isFetching: false, list: []}, action) {
+function marketReducer(state = { isFetching: false, markets: []}, action) {
   switch (action.type) {
     case "FETCHED_MARKETS":
-      return Object.assign({}, state, {list: action.payload, isFetching: false} )
+
+    	if (state.markets.length < 3) {
+    		const newMarkets = [...state.markets, action.payload]
+    		return Object.assign({}, state, {markets: newMarkets, isFetching: false} )
+    	} else {
+    		return Object.assign({}, state, {markets: [action.payload], isFetching: false} )
+    	}
+      
     case "FETCHING_MARKETS":
       return Object.assign({}, state, { isFetching: true})
+    // case "FETCHING_PRODUCTS":
+    //   return Object.assign({}, state, { isFetching: true})
+    // case "FETCHED_PRODUCTS":
+    //   return Object.assign({}, state, {products: action.payload, isFetching: false} )
     default:
       return state
   }

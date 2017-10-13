@@ -2,17 +2,21 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Grid, List, Loader} from 'semantic-ui-react'
 import MarketList from './MarketList'
+import IngredientList from './IngredientList'
 import { fetchMarkets } from '../actions/markets'
 import * as MarketActions from '../actions/markets'
 import MarketForm from './MarketForm'
 
 
 class MarketContainer extends React.Component {
-	
 
 
   render() {
-      console.log("RENDERING", this.props)
+      console.log("RENDERING", this.props.market_list)
+      const products = this.props.ingredients_list.map(el => {
+        return <IngredientList products = {el.products}/>
+      })
+      
       return (
           <div>
 
@@ -21,7 +25,7 @@ class MarketContainer extends React.Component {
                 <Loader active={this.props.isFetching} inline />
                 <MarketForm />
                 <MarketList markets={this.props.market_list}/>
-                
+                {products}
                 </Grid.Column>
 
               </Grid>
@@ -32,9 +36,10 @@ class MarketContainer extends React.Component {
 
 
 function mapStateToProps(state) {
-  console.log(state)
+  console.log("the state is", state)
   return {
-    market_list: state.markets.list,
+    ingredients_list: state.markets.markets,
+    market_list: state.markets.markets,
     isFetching: state.markets.isFetching
   }
 }
@@ -42,12 +47,13 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchMarket: () => {
-                /// action creator from './actions/Market'
+    fetchMarkets: () => {
       dispatch(fetchMarkets())
     }
   }
 }
+
+
 
 
 
