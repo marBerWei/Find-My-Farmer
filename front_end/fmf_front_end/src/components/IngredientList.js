@@ -4,7 +4,7 @@ import { Grid } from 'semantic-ui-react'
 
 
 const IngredientsList = (props) => {
-  console.log(props.products.split(";"))
+  //console.log(props.products.split(";"))
   const ingredArray = props.products.split(";").join("").split("and ")
   const IngredientItems = ingredArray.map((ing) => {
     return <IngredientItem ing={ing} />

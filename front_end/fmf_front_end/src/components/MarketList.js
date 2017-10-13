@@ -4,7 +4,7 @@ import { Grid } from 'semantic-ui-react'
 
 
 const MarketsList = (props) => {
-  console.log(props)
+  //console.log(props)
   
   const marketItems = props.markets.map((market) => {
     return <MarketItem market={market} />

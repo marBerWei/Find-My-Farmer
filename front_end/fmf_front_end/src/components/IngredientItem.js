@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 
 const IngredientItem = (props) =>{
-
+	//console.log("hitting ingredient item")
 
 	// let OneIngred = props.ingredient.map((ingred) => {
  //      	  	return <OneIngred ingredient={ingred} />
