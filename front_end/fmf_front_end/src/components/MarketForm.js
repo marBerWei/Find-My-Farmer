@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-import { fetchMarkets } from '../actions/markets'
+import { fetchMarkets } from '../actions/markets' 
 
 class MarketForm extends React.Component {
 
@@ -40,15 +40,11 @@ class MarketForm extends React.Component {
   }
 }
 
-// mktDetail?id=1000065
-// zipSearch?zip=10001
-
-
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchMarkets: (title) => {
-      dispatch(fetchMarkets(title))
+    fetchMarkets: (zip) => {
+      dispatch(fetchMarkets(zip))
     }
   }
 }
