@@ -1,3 +1,5 @@
+import { parseSchedule } from '../helperFunctions/ParseSchedule'
+import { getIngredients } from '../helperFunctions/getIngredients'
 
 export function fetchedMarkets(markets) {
   return {
@@ -12,20 +14,6 @@ export function fetchingMarkets() {
   }
 }
 
-
-// export function fetchMarkets(zip) {
-//   return function(dispatch) {
-//     dispatch(fetchingMarkets())
-//     fetch(`http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=${zip}`)
-//       .then((res) => res.json())
-//       .then((data) => {
-//         const markets = data.results.slice(0,3)
-//         console.log(markets)
-//         dispatch(fetchedMarkets(markets))
-//     })
-//   }
-// }
-
 export function fetchMarkets(zip) {
   return function(dispatch) {
     dispatch(fetchingMarkets())
@@ -39,14 +27,13 @@ export function fetchMarkets(zip) {
               .then((res) => res.json())
               .then((json) => {
 
-
                 const new_market = {
                     marketId: market.id, 
                     name: market.marketname, 
                     address: json.marketdetails.Address, 
                     googleLink: json.marketdetails.GoogleLink,
                     products: json.marketdetails.Products,
-                    schedule: json.marketdetails.Schedule 
+                    schedule: parseSchedule(json.marketdetails.Schedule).toString() 
                 }
 
                 dispatch(fetchedMarkets(new_market))
@@ -57,3 +44,16 @@ export function fetchMarkets(zip) {
         })
     }
 }
+
+// export function fetchMarkets(zip) {
+//   return function(dispatch) {
+//     dispatch(fetchingMarkets())
+//     fetch(`http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=${zip}`)
+//       .then((res) => res.json())
+//       .then((data) => {
+//         const markets = data.results.slice(0,3)
+//         console.log(markets)
+//         dispatch(fetchedMarkets(markets))
+//     })
+//   }
+// }
