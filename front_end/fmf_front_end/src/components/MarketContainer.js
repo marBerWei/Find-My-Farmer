@@ -1,60 +1,45 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Grid, List, Loader} from 'semantic-ui-react'
 import MarketList from './MarketList'
-import IngredientList from './IngredientList'
-import { fetchMarkets } from '../actions/markets'
+import IngredientListForm from './IngredientListForm'
+//import { fetchMarkets } from '../actions/markets'
+import { truthyObjs } from '../helperFunctions/truthyObjs'
 import * as MarketActions from '../actions/markets'
-import MarketForm from './MarketForm'
-
+import { getMarketObject } from '../helperFunctions/getMarketObject'
+import { getArrayOfKeys } from '../helperFunctions/getArrayOfKeys'
 
 class MarketContainer extends React.Component {
 
-
   render() {
-      console.log("RENDERING", this.props.market_list)
-      const products = this.props.ingredients_list.map(el => {
-        return <IngredientList products = {el.products}/>
-      })
-      
-      return (
-          <div>
+    console.log(this.props.market_list)
+    const chosen_ingreeds = this.props.selected_ingredients.ingredients
+    const OG_ingredients = this.props.OG_ingredients
 
-            <Grid>
-              <Grid.Column width={16}>
-                <Loader active={this.props.isFetching} inline />
-                <MarketForm />
-                <MarketList markets={this.props.market_list}/>
-                {products}
-                </Grid.Column>
+    const ingreeds = getArrayOfKeys(chosen_ingreeds,OG_ingredients)
 
-              </Grid>
-          </div>
-      )
+    const MarketObj = getMarketObject(ingreeds, this.props.market_list)
+    console.log(MarketObj)
+    console.log(ingreeds)
+    return (
+      <div>
+        <h1>Your Markets!</h1>
+        <MarketList markets={MarketObj}/>
+      </div>
+    )
   }
 }
 
 
 function mapStateToProps(state) {
-  console.log("the state is", state)
+  //console.log("the state is", state)
   return {
-    ingredients_list: state.markets.markets,
+    //ingredients_list: state.markets.markets,
     market_list: state.markets.markets,
+    OG_ingredients: state.markets.ingredients,
+    selected_ingredients: state.ingredients,
     isFetching: state.markets.isFetching
   }
 }
 
 
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchMarkets: () => {
-      dispatch(fetchMarkets())
-    }
-  }
-}
-
-
-
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(MarketContainer)
+export default connect(mapStateToProps)(MarketContainer)

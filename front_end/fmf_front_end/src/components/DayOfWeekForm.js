@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { addDays } from '../actions/dayOfWeek'
 
 class DayOfWeekForm extends React.Component {
 	state = {
@@ -14,6 +16,7 @@ class DayOfWeekForm extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault()
+		this.props.addDays(this.state)
 
 	}
 
@@ -25,7 +28,7 @@ class DayOfWeekForm extends React.Component {
 
 	render(){
 		return (
-
+			<div>
 			<form onSubmit={this.handleSubmit}>
 				<h1>Choose Your Shopping Day!</h1>
 				<h2>(as many as you like)</h2>
@@ -59,8 +62,18 @@ class DayOfWeekForm extends React.Component {
 	  			</div><b/>
 	  			<input className="ui button" type= "submit"></input>
 			</form>
+			<Link to={`/ingredients`}>Choose Your Ingredients</Link>
+			</div>
 		)
 	}
 }
 
-export default DayOfWeekForm
+function mapDispatchToProps(dispatch){
+	return {
+		addDays: (state) => {
+			dispatch(addDays(state))
+		}
+	}
+}
+
+export default connect(null,mapDispatchToProps)(DayOfWeekForm)

@@ -3,27 +3,24 @@ import IngredientItem from './IngredientItem'
 import { Grid } from 'semantic-ui-react'
 
 
-const IngredientsList = (props) => {
-  console.log(props.products.split(";"))
-  const ingredArray = props.products.split(";").join("").split("and ")
-  const IngredientItems = ingredArray.map((ing) => {
-    return <IngredientItem ing={ing} />
+class IngredientList extends React.Component {
+
+  state = {
+
+  }
+
+  render(){
+    const ingredientItems = this.props.trueValues.split(",").map((ingredient) => {
+    return <IngredientItem ingredient={ingredient} />
   })
-  // const IngredientItems = props.ingredients.map((ingredient) => {
-  //   let array = ingredient.products
-  //   console.log(array)
-  //   return <IngredientItem ingredient={array} />
-  // })
-  // const IngredientNames = props.Ingredients.map((Ingredient, i) => {
-  //   return <IngredientItem name={Ingredient[i]}/>
-  // })
-  return (
-    <Grid>
-      <Grid.Row>
-          {IngredientItems}
-      </Grid.Row>
-    </Grid>
-  )
+
+    return (
+      <div>
+            {ingredientItems}
+      </div>
+    )
+  }
 }
 
-export default IngredientsList
+
+export default IngredientList

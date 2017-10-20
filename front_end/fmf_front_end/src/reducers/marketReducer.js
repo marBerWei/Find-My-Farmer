@@ -1,4 +1,8 @@
-function marketReducer(state = { isFetching: false, markets: []}, action) {
+import ingredients  from '../foodData/seasonalIngredients'
+import getSeason  from '../helperFunctions/getSeason'
+
+const season = getSeason()
+function marketReducer(state = { isFetching: false, markets: [], ingredients: ingredients[season]}, action) {
   switch (action.type) {
     case "FETCHED_MARKETS":
 
@@ -11,10 +15,7 @@ function marketReducer(state = { isFetching: false, markets: []}, action) {
       
     case "FETCHING_MARKETS":
       return Object.assign({}, state, { isFetching: true})
-    // case "FETCHING_PRODUCTS":
-    //   return Object.assign({}, state, { isFetching: true})
-    // case "FETCHED_PRODUCTS":
-    //   return Object.assign({}, state, {products: action.payload, isFetching: false} )
+    
     default:
       return state
   }

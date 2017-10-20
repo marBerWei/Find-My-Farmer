@@ -4,21 +4,20 @@ import { Link } from 'react-router-dom'
 
 
 const IngredientItem = (props) =>{
-
-
-	// let OneIngred = props.ingredient.map((ingred) => {
- //      	  	return <OneIngred ingredient={ingred} />
- //      	  })
- 	//console.log(this.props.Ingredient)
-    //const Ingredients = this.props
+	
     return (
-      <div>
-      	<div>
-      	  <h3>{props.ing}</h3>
-      	 </div>
-      </div>
-
-
+	     <div class="ui three column grid">
+		  <div class="column">
+		    <div class="ui fluid card">
+		      <div class="image">
+		        <img src="/images/avatar/large/daniel.jpg"/>
+		      </div>
+		      <div class="content">
+		        <a class="header">{props.ingredient}</a>
+		      </div>
+	      	</div>
+	       </div>
+	     </div>
     )
   }
 
