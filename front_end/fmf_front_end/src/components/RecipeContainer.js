@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import RecipeList from './recipeList'
-import IngredientList from './IngredientList'
-//import { fetchrecipes } from '../actions/recipes'
+import RecipeList from './RecipeList'
+import { Link } from 'react-router-dom'
 import * as recipeActions from '../actions/recipes'
 
 
@@ -14,9 +13,8 @@ class RecipeContainer extends React.Component {
       
       return (
           <div>
-                
-            <h1>hi</h1>
-
+            <RecipeList recipes = {this.props.recipe_list}/>
+            <Link to={`/markets`}>Go Shopping!</Link>
           </div>
       )
   }
@@ -26,9 +24,9 @@ class RecipeContainer extends React.Component {
 function mapStateToProps(state) {
   //console.log("the state is", state)
   return {
-    recipe_list: state.recipes.recipes
+    recipe_list: state.recipes.recipes.slice(0,5)
   }
 }
 
 
-export default connect(mapStateToProps)(recipeContainer)
+export default connect(mapStateToProps)(RecipeContainer)

@@ -11,14 +11,40 @@ export function fetchedRecipes(recipes) {
   }
 }
 
-// export function fetchRecipes(string) {
+// export function fetchBooks() {
 //   return function(dispatch) {
-//     dispatch(fetchingRecipes())
-//     fetch(`http://food2fork.com/api/search?key=827ace4f4a570a48be860f9fb87e7f66&q=${string}`,{mode:'no-cors'})
+//     dispatch(fetchingBooks())
+//     fetch('https://www.googleapis.com/books/v1/volumes?q=subject:suspense&maxResults=40')
 //       .then((res) => res.json())
 //       .then((json) => {
-//         const recipes = json.recipes
-//         dispatch(fetchedRecipes(recipes))
+//         const books = json.items
+//         dispatch(fetchedBooks(books))
 //       })
 //   }
 // }
+
+
+
+
+export function fetchRecipes(ingredients) {
+  return function(dispatch) {
+    dispatch(fetchingRecipes())
+    fetch('http://localhost:3001/addIngredientsToFetchRequest',{
+       method: 'POST',
+       body: JSON.stringify({ingredients: ingredients}),
+       headers: {
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+       }
+     }
+    )
+    .then((res) => res.json())
+    .then((data) => {
+    	const recipes = data.recipes
+    	dispatch(fetchedRecipes(recipes))
+	})
+	}
+ }
+
+
+

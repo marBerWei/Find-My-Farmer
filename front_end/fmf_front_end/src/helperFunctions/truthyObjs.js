@@ -5,5 +5,5 @@ export function truthyObjs(obj){
 			array.push(key)
 		}
 	}
-	return array
+	return array.join(",")
 }

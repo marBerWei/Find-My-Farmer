@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import MarketContainer from './components/MarketContainer'
 import './App.css';
 import IngredientContainer from './components/IngredientContainer'
+import RecipeContainer from './components/RecipeContainer'
 import MarketForm from './components/MarketForm'
 import DayOfWeekForm from './components/DayOfWeekForm'
 import LoginForm from './components/LoginForm'
 import SignUp from './components/SignUp'
 import NavBar from './components/NavBar'
 import { Redirect, Route } from 'react-router-dom'
+// import MapContainer from './components/MapContainer'
+// import { GoogleApiWrapper } from 'google-maps-react'
 
 
 //import DayOfWeekForm from './components/DayOfWeekForm'
@@ -23,6 +26,7 @@ class App extends Component {
       <Route exact path="/day" component={DayOfWeekForm}/>
       <Route exact path="/markets" component={MarketContainer}/>
       <Route exact path="/ingredients" component={IngredientContainer}/>
+      <Route exact path="/recipes" component={RecipeContainer}/>
        
       </div>
     );

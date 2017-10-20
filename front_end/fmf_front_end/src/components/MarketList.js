@@ -13,11 +13,9 @@ const MarketsList = (props) => {
   //   return <MarketItem name={market[i]}/>
   // })
   return (
-    <Grid>
-      <Grid.Row>
-          {marketItems}
-      </Grid.Row>
-    </Grid>
+    <div>
+      {marketItems}
+    </div>
   )
 }
 
