@@ -25,9 +25,15 @@ class IngredientContainer extends React.Component {
     
 
     return(
-      <div class="ui three column grid">
-        <IngredientListForm ingredients={mergedArray} obj={newState()}/>
-      </div>
+  
+        <Grid>
+          <Grid.Row width={16}>
+         
+            <IngredientListForm history={this.props.history} ingredients={mergedArray} obj={newState()}/>
+
+          </Grid.Row>
+        </Grid>
+   
     )
   }
 }

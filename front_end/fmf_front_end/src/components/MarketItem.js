@@ -21,7 +21,6 @@ const MarketItem = (props) => {
             width="600"
             height="450"
             src= {`https://www.google.com/maps/embed/v1/place?key=AIzaSyDuY3HZQGiU7RB_dZ7GYjaHmh-dvo4z4X4%20&q=${props.market.googleLink.slice(55)}`}>
-            
           </iframe>
           
       	 </div><br/><br/>

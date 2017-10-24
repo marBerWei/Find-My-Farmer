@@ -11,30 +11,46 @@ export function fetchedRecipes(recipes) {
   }
 }
 
-// export function fetchBooks() {
-//   return function(dispatch) {
-//     dispatch(fetchingBooks())
-//     fetch('https://www.googleapis.com/books/v1/volumes?q=subject:suspense&maxResults=40')
-//       .then((res) => res.json())
-//       .then((json) => {
-//         const books = json.items
-//         dispatch(fetchedBooks(books))
-//       })
-//   }
-// }
+export function savingRecipe(recipe, user_id) {
+  console.log(user_id)
+  const token = localStorage.getItem("jwtToken")
+  return function(dispatch) {
+    dispatch(fetchingRecipes())
+    fetch('http://localhost:3001/recipes', {
+      method: 'POST',
+      body: JSON.stringify({recipe: recipe, user: user_id}),
+      // , user: localStorage.getItem('jwtToken')
+      headers: {
+        "Accept":"application/json",
+        "Content-Type":"application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    })
+      .then((res) => res.json())
+      .then((json) => {
+      //   console.log(json)  
+        dispatch(saveRecipe(json))
+      })
+  }
+}
 
-
-
+export function saveRecipe(payload){
+  return { 
+    type: "SAVE_RECIPE",
+    payload
+  }
+}
 
 export function fetchRecipes(ingredients) {
-  return function(dispatch) {
+
+  return function(dispatch) { 
     dispatch(fetchingRecipes())
     fetch('http://localhost:3001/addIngredientsToFetchRequest',{
        method: 'POST',
        body: JSON.stringify({ingredients: ingredients}),
        headers: {
         "Accept":"application/json",
-        "Content-Type":"application/json"
+        "Content-Type":"application/json",
        }
      }
     )
@@ -46,5 +62,30 @@ export function fetchRecipes(ingredients) {
 	}
  }
 
+export function fetchUserRecipe(user_id) {
+  console.log(user_id)
+  return function(dispatch) {
+    dispatch(fetchingRecipes())
+    fetch('http://localhost:3001/user_recipes', {
+      method: 'POST',
+      body: JSON.stringify({user: user_id}),
+      // , user: localStorage.getItem('jwtToken')
+      headers: {
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+      }
+    })
+      .then((res) => res.json())
+      .then((json) => {
+      //   console.log(json)  
+        dispatch(saveRecipe(json))
+      })
+  }
+}
 
-
+export function displayUserRecipes(payload){
+  return { 
+    type: "DISPLAY_USER_RECIPE",
+    payload
+  }
+}

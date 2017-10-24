@@ -7,46 +7,34 @@ import MarketForm from './components/MarketForm'
 import DayOfWeekForm from './components/DayOfWeekForm'
 import LoginForm from './components/LoginForm'
 import SignUp from './components/SignUp'
+import Profile from './components/Profile'
 import NavBar from './components/NavBar'
 import { Redirect, Route } from 'react-router-dom'
 // import MapContainer from './components/MapContainer'
 // import { GoogleApiWrapper } from 'google-maps-react'
-
-
-//import DayOfWeekForm from './components/DayOfWeekForm'
+// import DayOfWeekForm from './components/DayOfWeekForm'
 
 class App extends Component {
+
+
   render() {
     return (
       <div className="App">
-      <NavBar/>
+      <NavBar render={(props) => <App {...props}/>}/>
       <Route exact path="/" component={MarketForm}/>
       <Route exact path="/signup" component={SignUp}/>
       <Route exact path="/login" component={LoginForm}/>
       <Route exact path="/day" component={DayOfWeekForm}/>
       <Route exact path="/markets" component={MarketContainer}/>
-      <Route exact path="/ingredients" component={IngredientContainer}/>
+      <Route exact path="/ingredients" render={(props) => <IngredientContainer {...props}/>}/>
       <Route exact path="/recipes" component={RecipeContainer}/>
-       
+      <Route exact path="/me" component={Profile}/>
       </div>
     );
   }
 }
 
 export default App;
-
-
-
-  // render() {
-  //     return (
-  //     <div className="App">
-        
-  //     </div>
-  //   )
-    
-  // }
-
-        
 
 
 

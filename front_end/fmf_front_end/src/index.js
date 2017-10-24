@@ -19,10 +19,11 @@ import dayOfWeekReducer from './reducers/dayOfWeekReducer'
 import loginReducer from './reducers/loginReducer'
 import ingredientReducer from './reducers/ingredientReducer'
 import recipeReducer from './reducers/recipeReducer'
+import logoutReducer from './reducers/logoutReducer'
 
 
 
-const rootReducer = combineReducers({markets: marketReducer, dow: dayOfWeekReducer, login: loginReducer, ingredients: ingredientReducer, recipes: recipeReducer})
+const rootReducer = combineReducers({markets: marketReducer, dow: dayOfWeekReducer, login: loginReducer, logout: logoutReducer, ingredients: ingredientReducer, recipes: recipeReducer})
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 ReactDOM.render(<Provider store={store}><Router><App /></Router></Provider>, 

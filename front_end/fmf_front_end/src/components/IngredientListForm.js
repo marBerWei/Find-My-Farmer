@@ -1,6 +1,6 @@
 import React from 'react'
 import IngredientItem from './IngredientItem'
-import { Grid } from 'semantic-ui-react'
+import { Card, Icon, Grid, Segment } from 'semantic-ui-react'
 import { unique } from '../helperFunctions/uniqueFunc'
 import { truthyObjs } from '../helperFunctions/truthyObjs'
 import { connect } from 'react-redux'
@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import { addIngredients } from '../actions/ingredients'
 import IngredientList from './IngredientList'
 import { fetchRecipes } from '../actions/recipes'
+import ingredients from '../foodData/seasonalIngredients'
 
 class IngredientsListForm extends React.Component {
   
@@ -28,25 +29,45 @@ class IngredientsListForm extends React.Component {
     console.log(ingredients)
     this.props.addIngredients(ingredients)
     this.props.fetchRecipes(ingredients)
+    this.props.history.push('recipes')
   }
 
   buttonColor = (food) => {
     return this.state[food] ? 'PaleVioletRed' : 'DarkSeaGreen'
   }
+  // if this food appears in foodData in a particular object,
 
-  render(){
-    console.log(this.state)
+  returnMap = () => {
+     return this.props.ingredients.map((food, i) => {
+      return (
+            <Card>
+              <Card.Content>
+                <Card.Header>
+                  <h1> {food}</h1>
+                </Card.Header>
+              </Card.Content>
+              <button 
+                style={{background: this.buttonColor(food), color: 'white'}}
+                key = {i} 
+                className="ui button" 
+                name="ingredients" 
+                value= {food} 
+                onClick={this.handleClick}>{this.state[food] ? "Remove " : "Add " }{food}
+              </button><br/>
+            </Card>
+          )
+      })
+  }
+
+  render() {
     return (
-      <div>
-        <div>
+      <div className="cardBody"> 
         <form onSubmit={this.handleSubmit}>
-            {this.props.ingredients.map((food, i) => <label>{food[0].toUpperCase() + food.slice(1)}<button style={{background: this.buttonColor(food), color: 'white'}} className="ui button" name="ingredients" value= {food} onClick={this.handleClick}>{this.state[food] ? "Remove " : "Add " }{food}</button><br/></label>)}
+            {this.returnMap()}
             <button className="ui submit button" name="Find Recipes" type="submit">Find Recipes</button>
         </form>
-        </div>
-        <Link to={`/recipes`}>Choose Your Recipes</Link>
-        <div><br/><br/>
-          <h1>Your Chosen Ingredients</h1>
+        <div>
+          <label><h1>Your Chosen Ingredients</h1></label>
           <IngredientList trueValues={truthyObjs(this.state)}/><br/>
         </div>
       </div>

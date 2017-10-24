@@ -10,13 +10,13 @@ class IngredientList extends React.Component {
   }
 
   render(){
-    const ingredientItems = this.props.trueValues.split(",").map((ingredient) => {
-    return <IngredientItem ingredient={ingredient} />
+    const ingredientItems = this.props.trueValues.split(",").map((ingredient, i) => {
+    return <IngredientItem key= {i} ingredient={ingredient} />
   })
 
     return (
       <div>
-            {ingredientItems}
+        {ingredientItems}
       </div>
     )
   }

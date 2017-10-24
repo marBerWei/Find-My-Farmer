@@ -46,7 +46,14 @@ ActiveRecord::Schema.define(version: 20171013184341) do
   end
 
   create_table "recipes", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
+    t.string "publisher"
+    t.string "f2f_url"
+    t.string "source_url"
+    t.string "recipe_id"
+    t.string "image_url"
+    t.float "social_rank"
+    t.string "publisher_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

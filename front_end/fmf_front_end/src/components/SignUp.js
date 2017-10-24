@@ -6,22 +6,15 @@ import { grid } from 'semantic-ui-react'
 class SignUp extends React.Component {
 
   state = {
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     password: ""
   }
 
-  handleFirstName = (event) => {
+  handleName = (event) => {
     event.preventDefault()
     this.setState({
-      firstName: event.target.value
-    })
-  }
-  handleLastName = (event) => {
-    event.preventDefault()
-    this.setState({
-      lastName: event.target.value
+      name: event.target.value
     })
   }
   handleEmail = (event) => {
@@ -43,8 +36,7 @@ class SignUp extends React.Component {
     const signupParams = {
       email: this.state.email,
       password: this.state.password,
-      first_name: this.state.firstName,
-      last_name: this.state.lastName
+      name: this.state.name
     }
 
     fetch("http://localhost:3001/signup", {
@@ -57,9 +49,8 @@ class SignUp extends React.Component {
   }).then(res => res.json()).then(user => {
     console.log(user)
     localStorage.setItem("jwtToken", user.jwt)
-    localStorage.setItem("firstName", user.user.first_name)
-    localStorage.setItem("lastName", user.user.last_name)
-    localStorage.setItem("email", user.user.email)
+    localStorage.setItem("name", user.name)
+    localStorage.setItem("email", user.email)
 
 
   })
@@ -72,19 +63,14 @@ class SignUp extends React.Component {
   return (
     <div className="ui middle aligned center aligned grid">
       <div className="column">
-        <h2 id="login-header" className="ui blue image header">
+        <h2 id="login-header" className="ui orange image header">
           <div className="content">Sign up for an account</div>
         </h2>
         <form className="ui large form">
           <div className="ui stacked segment">
             <div className="field">
               <div className="ui left icon input">
-                <input type="text" name="first-name" placeholder="First Name" onChange={this.handleFirstName}/>
-              </div>
-            </div>
-            <div className="field">
-              <div className="ui left icon input">
-                <input type="text" name="last-name" placeholder="Last Name" onChange={this.handleLastName}/>
+                <input type="text" name="name" placeholder="name" onChange={this.handleName}/>
               </div>
             </div>
             <div className="field">
@@ -98,7 +84,7 @@ class SignUp extends React.Component {
               </div>
             </div>
 
-            <div className="ui fluid large blue submit button" onClick={this.handleSignUp}>Sign Up</div>
+            <div className="ui fluid large orange submit button" onClick={this.handleSignUp}>Sign Up</div>
             <h4>Already a fan?
               <a href="/login"> Sign in here</a>
             </h4>

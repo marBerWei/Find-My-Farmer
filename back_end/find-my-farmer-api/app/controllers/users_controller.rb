@@ -9,6 +9,12 @@ class UsersController < ApplicationController
 		@user = User.new
 	end
 
+	def getRecipes
+		@user = User.find(current_user.id)
+		@recipes = @user.recipes
+		render json: @recipes, status: 200
+	end
+
 	private
 
 	def user_params
