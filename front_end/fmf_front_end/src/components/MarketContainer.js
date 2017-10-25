@@ -7,6 +7,7 @@ import { truthyObjs } from '../helperFunctions/truthyObjs'
 import * as MarketActions from '../actions/markets'
 import { getMarketObject } from '../helperFunctions/getMarketObject'
 import { getArrayOfKeys } from '../helperFunctions/getArrayOfKeys'
+import { Link } from 'react-router-dom'
 
 class MarketContainer extends React.Component {
 
@@ -20,12 +21,24 @@ class MarketContainer extends React.Component {
     const MarketObj = getMarketObject(ingreeds, this.props.market_list)
     console.log(MarketObj)
     console.log(ingreeds)
+    if(MarketObj.length === 0){
+      return (
+        <div>
+          <h1>These Ingredients don't seem to be available near you!</h1>
+          <Link to="/ingredients">Go back to Ingredient List!</Link>
+        </div>
+
+        )
+    } else {
     return (
+
       <div>
         <h1>Your Markets!</h1>
         <MarketList markets={MarketObj}/>
       </div>
+
     )
+  }
   }
 }
 

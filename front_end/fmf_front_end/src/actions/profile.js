@@ -1,11 +1,10 @@
-export function fetchingSavedRecipes(user_id) {
-  console.log(user_id)
+export function fetchingSavedRecipes() {
+  // console.log(user_id)
   const token = localStorage.getItem("jwtToken")
   return function(dispatch) {
-    dispatch(fetchingRecipes())
-    fetch('http://localhost:3001/getRecipes', {
+    fetch('http://localhost:3001/recipes', {
       method: 'GET',
-      body: JSON.stringify({user: user_id}),
+      // body: JSON.stringify({user: user_id}),
       // , user: localStorage.getItem('jwtToken')
       headers: {
         "Accept":"application/json",
@@ -15,8 +14,15 @@ export function fetchingSavedRecipes(user_id) {
     })
       .then((res) => res.json())
       .then((json) => {
-      //   console.log(json)  
-        dispatch(saveRecipe(json))
+        // console.log(json)  
+        dispatch(displayUserRecipe(json))
       })
   }
+}
+
+export function displayUserRecipe(json){
+	return {
+		type: "DISPLAY_PROFILE",
+		payload: json
+	}
 }

@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom'
 import { addIngredients } from '../actions/ingredients'
 import IngredientList from './IngredientList'
 import { fetchRecipes } from '../actions/recipes'
-import ingredients from '../foodData/seasonalIngredients'
+
+
 
 class IngredientsListForm extends React.Component {
   
@@ -37,13 +38,23 @@ class IngredientsListForm extends React.Component {
   }
   // if this food appears in foodData in a particular object,
 
-  returnMap = () => {
-     return this.props.ingredients.map((food, i) => {
+  returnMap = (someList) => {
+   const filteredHerbs = this.props.ingredients_list.herb
+   const filteredFruits = this.props.ingredients_list.fruit
+   const filteredVeggies = this.props.ingredients_list.vegetable
+   const filteredSeafood = this.props.ingredients_list.seafood
+   const filteredPoultry = this.props.ingredients_list.poultry
+   const filteredMeat = this.props.ingredients_list.meat
+   const filteredFish = this.props.ingredients_list.fish
+   const filteredCheese = this.props.ingredients_list.cheese
+   const filteredDairy = this.props.ingredients_list.dairy
+   
+     return someList.map((food, i) => {
       return (
             <Card>
               <Card.Content>
                 <Card.Header>
-                  <h1> {food}</h1>
+                  <p> {food}</p>
                 </Card.Header>
               </Card.Content>
               <button 
@@ -60,10 +71,48 @@ class IngredientsListForm extends React.Component {
   }
 
   render() {
+
+   const filteredHerbs = this.props.ingredients_list.herb
+   const filteredFruits = this.props.ingredients_list.fruit
+   const filteredVeggies = this.props.ingredients_list.vegetable
+   const filteredSeafood = this.props.ingredients_list.seafood
+   const filteredPoultry = this.props.ingredients_list.poultry
+   const filteredMeat = this.props.ingredients_list.meat
+   const filteredFish = this.props.ingredients_list.fish
+   const filteredCheese = this.props.ingredients_list.cheese
+   const filteredDairy = this.props.ingredients_list.dairy
     return (
+
       <div className="cardBody"> 
+        <h1>Seasonal Ingredients</h1>
+        <h2>Choose 2-3...remember to be adventurous!</h2>
         <form onSubmit={this.handleSubmit}>
-            {this.returnMap()}
+        <table className="ui celled padded table">
+        <tbody>
+        <tr>
+
+        <th><img className='table-header-img' src={require("../fresh_herbs.jpg")}/><h1>Herbs</h1></th>
+        <th><img className='table-header-img' src={require("../fruit.jpeg")}/><h1>Fruits</h1></th>
+        <th><img className='table-header-img' src={require("../vegetable.jpg")}/><h1>Vegetables</h1></th>
+        </tr>
+        <tr>
+        <td>{this.returnMap(filteredHerbs)}</td>
+        <td>{this.returnMap(filteredFruits)}</td>
+        <td>{this.returnMap(filteredVeggies)}</td>
+        </tr>
+        <tr>
+        <th><img className='table-header-img' src={require("../chicken.jpg")}/><h1>Poultry</h1></th>
+        <th><img className='table-header-img' src={require("../cheese.jpg")}/><h1>Cheese</h1></th>
+        <th><img className='table-header-img' src={require("../fresh-seafood.jpeg")}/><h1>Fish</h1></th>
+        </tr>
+        <tr>
+        <td>{this.returnMap(filteredPoultry)}</td>
+        <td>{this.returnMap(filteredCheese)}</td>
+        <td>{this.returnMap(filteredFish)}</td>
+        </tr>
+        </tbody>
+        </table>
+            
             <button className="ui submit button" name="Find Recipes" type="submit">Find Recipes</button>
         </form>
         <div>
@@ -74,7 +123,11 @@ class IngredientsListForm extends React.Component {
     )
   }
 }
-
+function mapStateToProps(state){
+  return {
+    ingredients_list: state.markets.ingredients
+  }
+}
 function mapDispatchToProps(dispatch){
   return {
     addIngredients: (state) => {
@@ -83,9 +136,9 @@ function mapDispatchToProps(dispatch){
     fetchRecipes:(string) => {
       dispatch(fetchRecipes(string))
     }
+
   }
 }
 
 
-
-export default connect(null,mapDispatchToProps)(IngredientsListForm)
+export default connect(mapStateToProps ,mapDispatchToProps)(IngredientsListForm)

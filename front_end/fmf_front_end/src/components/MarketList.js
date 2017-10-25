@@ -3,15 +3,13 @@ import MarketItem from './MarketItem'
 import { Grid } from 'semantic-ui-react'
 
 
-const MarketsList = (props) => {
-  //console.log(props)
+const MarketList = (props) => {
+  console.log("props from market list", props)
   
   const marketItems = props.markets.map((market) => {
     return <MarketItem market={market} />
   })
-  // const marketNames = props.markets.map((market, i) => {
-  //   return <MarketItem name={market[i]}/>
-  // })
+  
   return (
     <div>
       {marketItems}
@@ -19,4 +17,4 @@ const MarketsList = (props) => {
   )
 }
 
-export default MarketsList
+export default MarketList

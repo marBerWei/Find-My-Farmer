@@ -68,6 +68,12 @@ div.cardBody {
   padding-bottom: 15%;
 }
 
+img.table-header-img {
+  margin: auto;
+  height: 100px;
+  width: 100px;
+}
+
 /*.MarketForm.input {
   width: 40px; 
 }*/

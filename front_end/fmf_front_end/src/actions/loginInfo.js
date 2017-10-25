@@ -36,6 +36,25 @@ export function fetchUser(loginParams, props){
 
 }
 
+
+export function fetchUserFromToken(token) {
+  return function(dispatch){
+    fetch("http://localhost:3001/current_user", {
+        method: 'get',
+        headers: {
+          "Content-Type":"application/json",
+          "Accept":"application/json",
+          "Authorization":`Bearer ${token}` 
+        }
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          console.log('fetched from token', json)
+          dispatch(loginUser(json))
+        })
+      }
+}
+
 export function loginUser(payload){
   return { 
     type: "LOGIN_USER",

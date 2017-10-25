@@ -1,5 +1,9 @@
 import React from 'react'
+import { Card } from 'semantic-ui-react'
 import {connect} from 'react-redux'
+import { fetchingSavedRecipes } from '../actions/profile'
+import { unique } from '../helperFunctions/uniqueFunc'
+import ProfileRecipeItem from '../components/ProfileRecipeItem'
 
 // EDIT THIS PAGE
 // import HistoryList from './HistoryList'
@@ -7,13 +11,24 @@ import {connect} from 'react-redux'
 class Profile extends React.Component {
 
   componentDidMount(){
-    console.log("profile mounting")
-    // dispatch action that updates the store
-    // fetch request to the back end uising the jwt token
+    this.props.fetchingSavedRecipes()
+    // fetch request to the back end using the jwt token
 
   }
 
+
   render(){
+    let recipes
+
+    if(this.props.saved_recipes.length > 0){
+      let uniqueRecipes = unique(this.props.saved_recipes)
+      recipes = uniqueRecipes.map(recipe => {
+        return <Card.Group><ProfileRecipeItem Recipe={recipe} /></Card.Group>
+      })
+    }
+    
+    console.log(this.props.saved_recipes)
+
     return (
       <div>
           <div className="ui blue centered card" id="user-card">
@@ -25,20 +40,26 @@ class Profile extends React.Component {
           </div>
         </div>
         <div><h1>Favorite Recipes</h1></div>
-          <h2> {this.props.saved_recipes} </h2>
+          <div>{recipes}</div>
     </div>
     )
   }
 }
 
-function mapStateToProps(state) {
-  //console.log("the state is", state)
+function mapDispatchToProps(dispatch){
   return {
-    //ingredients_list: state.markets.markets,
-    name: state.login.name,
-    email: state.login.email,
-    saved_recipes: state.recipes.saved_recipes
+    fetchingSavedRecipes: (state) => {
+      dispatch(fetchingSavedRecipes(state))
+    }
   }
 }
 
-export default connect(mapStateToProps)(Profile)
+function mapStateToProps(state) {
+  return {
+    name: state.login.user.name,
+    email: state.login.user.email,
+    saved_recipes: state.profile.profile_recipes
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Profile)

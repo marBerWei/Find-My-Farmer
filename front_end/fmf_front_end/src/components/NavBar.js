@@ -16,6 +16,7 @@ class Nav extends React.Component {
       return (
         <div className="ui inverted menu">
           <NavLink activeClassName="active orange item" className="item" to="/">Home</NavLink>
+          <NavLink activeClassName="active orange item" className="item" to="/ingredients">Ingredients</NavLink>
           <NavLink className="item" to="/home" onClick={this.handleLogout}>Logout</NavLink>
           <NavLink activeClassName="active orange item" className="item right" to="/me">My Profile</NavLink>
         </div>
@@ -24,6 +25,7 @@ class Nav extends React.Component {
       return (
         <div className="ui inverted menu">
           <NavLink activeClassName="active orange item" className="item" to="/">Home</NavLink>
+          <NavLink activeClassName="active orange item" className="item" to="/ingredients">Ingredients</NavLink>
           <NavLink activeClassName="active orange item" className="item" to="/signup">Sign Up</NavLink>
           <NavLink activeClassName="active orange item" className="item" to="/login">Login</NavLink>
         </div>
