@@ -21,9 +21,10 @@ class MarketForm extends React.Component {
     }
 
     handleSubmit = (event) => {
+      event.preventDefault()
       this.marketState(event)
       this.clicked()
-      this.props.history.push('day')
+      this.props.history.push('ingredients')
     }
 
   handleInputSearch = (event) => {
@@ -35,21 +36,8 @@ class MarketForm extends React.Component {
 
   render() {
     
-    if (!this.clicked) {
     return (
-      <div>
-      <form>
-        <div class="ui success message">
-            <div class="header">Form Completed</div>
-              <p>Your Zipcode Has Been Saved</p>
-            </div>
-      </form>
-        <Link to={`/day`}>Choose Your Shopping Day</Link>
-      </div>
-      )
-    } else {
-    return (
-      <div className="background">
+      <div className="background"><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
         <div className="ui input">
         <form className="ui form success" onSubmit = {this.handleSubmit}>
           <div className="field">
@@ -60,7 +48,7 @@ class MarketForm extends React.Component {
       </div>
       </div>
     ) 
-    }
+    
   }
 }
 

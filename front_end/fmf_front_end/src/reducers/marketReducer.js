@@ -2,6 +2,7 @@ import ingredients  from '../foodData/seasonalIngredients'
 import getSeason  from '../helperFunctions/getSeason'
 
 const season = getSeason()
+
 function marketReducer(state = { isFetching: false, markets: [], ingredients: ingredients[season]}, action) {
   switch (action.type) {
     case "FETCHED_MARKETS":

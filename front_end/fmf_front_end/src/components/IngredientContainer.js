@@ -25,9 +25,15 @@ class IngredientContainer extends React.Component {
     
 
     return(
-      <div class="ui three column grid">
-        <IngredientListForm ingredients={mergedArray} obj={newState()}/>
-      </div>
+  
+        <Grid>
+          <Grid.Row width={16}>
+            <Loader active={this.props.isFetching} inline />
+            <IngredientListForm history={this.props.history} ingredients={mergedArray} obj={newState()}/>
+
+          </Grid.Row>
+        </Grid>
+   
     )
   }
 }
@@ -39,7 +45,8 @@ function mapStateToProps(state) {
   //state.markets.ingredients is an object
   return {
     markets_list: state.markets.markets,
-    ingredients_list: state.markets.ingredients
+    ingredients_list: state.markets.ingredients,
+    isFetching: state.recipes.isFetching
   }
 }
 

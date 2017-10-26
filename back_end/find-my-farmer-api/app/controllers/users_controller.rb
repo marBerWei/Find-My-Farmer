@@ -9,6 +9,10 @@ class UsersController < ApplicationController
 		@user = User.new
 	end
 
+	def current_user_from_token
+		render json: current_user
+	end
+
 	private
 
 	def user_params

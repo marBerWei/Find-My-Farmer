@@ -6,36 +6,38 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'httparty'
 
-class FetchRecipes
 
-	def initialize(string)
-		@string = string
-	end
+# require 'httparty'
 
-	include HTTParty
-	base_uri "http://food2fork.com/api"
+# class FetchRecipes
 
-	def recipe
-		self.class.get("/search?key=827ace4f4a570a48be860f9fb87e7f66&q=${string}")
-	end
-end
+# 	def initialize(string)
+# 		@string = string
+# 	end
 
-recipes = FetchRecipes.new()
+# 	include HTTParty
+# 	base_uri "http://food2fork.com/api"
 
-	recipes.each_with_index do |recipe, i|
-		begin 
-			recipe_name = recipe["recipes"]#this is where we get things
-		rescue 
-			puts "error"
-			next
-		else 
-			Recipe.create(
-				name:recipe_name
-			)
-	end
-end
+# 	def recipe
+# 		self.class.get("/search?key=827ace4f4a570a48be860f9fb87e7f66&q=${string}")
+# 	end
+# end
+
+# recipes = FetchRecipes.new()
+
+# 	recipes.each_with_index do |recipe, i|
+# 		begin 
+# 			recipe_name = recipe["recipes"]#this is where we get things
+# 		rescue 
+# 			puts "error"
+# 			next
+# 		else 
+# 			Recipe.create(
+# 				name:recipe_name
+# 			)
+# 	end
+# end
 
 
 
