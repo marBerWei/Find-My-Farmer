@@ -60,7 +60,7 @@ class IngredientsListForm extends React.Component {
               <button 
                 style={{background: this.buttonColor(food), color: 'white'}}
                 key = {i} 
-                className="ui button" 
+                className="ui primary button" 
                 name="ingredients" 
                 value= {food} 
                 onClick={this.handleClick}>{this.state[food] ? "Remove " : "Add " }{food}
@@ -91,9 +91,9 @@ class IngredientsListForm extends React.Component {
         <tbody>
         <tr>
 
-        <th><img className='table-header-img' src={require("../fresh_herbs.jpg")}/><h1>Herbs</h1></th>
-        <th><img className='table-header-img' src={require("../fruit.jpeg")}/><h1>Fruits</h1></th>
-        <th><img className='table-header-img' src={require("../vegetable.jpg")}/><h1>Vegetables</h1></th>
+        <th><img className='table-header-img' src={require("../fresh_herbs.jpg")}/><div style={{textAlign: "center"}}><h1>Herbs</h1></div></th>
+        <th><img className='table-header-img' src={require("../fruit.jpeg")}/><div style={{textAlign: "center"}}><h1>Fruits</h1></div></th>
+        <th><img className='table-header-img' src={require("../vegetable.jpg")}/><div style={{textAlign: "center"}}><h1>Vegetables</h1></div></th>
         </tr>
         <tr>
         <td>{this.returnMap(filteredHerbs)}</td>
@@ -101,9 +101,9 @@ class IngredientsListForm extends React.Component {
         <td>{this.returnMap(filteredVeggies)}</td>
         </tr>
         <tr>
-        <th><img className='table-header-img' src={require("../chicken.jpg")}/><h1>Poultry</h1></th>
-        <th><img className='table-header-img' src={require("../cheese.jpg")}/><h1>Cheese</h1></th>
-        <th><img className='table-header-img' src={require("../fresh-seafood.jpeg")}/><h1>Fish</h1></th>
+        <th><img className='table-header-img' src={require("../chicken.jpg")}/><div style={{textAlign: "center"}}><h1>Poultry</h1></div></th>
+        <th><img className='table-header-img' src={require("../cheese.jpg")}/><div style={{textAlign: "center"}}><h1>Cheeses</h1></div></th>
+        <th><img className='table-header-img' src={require("../fresh-seafood.jpeg")}/><div style={{textAlign: "center"}}><h1>Fish</h1></div></th>
         </tr>
         <tr>
         <td>{this.returnMap(filteredPoultry)}</td>
@@ -113,11 +113,11 @@ class IngredientsListForm extends React.Component {
         </tbody>
         </table>
             
-            <button className="ui submit button" name="Find Recipes" type="submit">Find Recipes</button>
+            <button className="ui primary submit button" name="Find Recipes" type="submit">Find Recipes</button>
         </form>
         <div>
           <label><h1>Your Chosen Ingredients</h1></label>
-          <IngredientList trueValues={truthyObjs(this.state)}/><br/>
+          <Card.Group><IngredientList trueValues={truthyObjs(this.state)}/></Card.Group><br/>
         </div>
       </div>
     )

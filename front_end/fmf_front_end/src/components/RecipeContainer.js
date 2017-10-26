@@ -28,8 +28,8 @@ class RecipeContainer extends React.Component {
           <Grid>
           <div className="cardBody">
             <Grid.Column width={16}>
-              <RecipeList recipes = {this.props.recipe_list} handleClick={this.handleClick}/>
-              <button className= "ui button"><Link to={`/markets`}>Go Shopping!</Link></button>
+              <br/><RecipeList recipes = {this.props.recipe_list} handleClick={this.handleClick}/><br/>
+              <br/><button className= "ui button"><Link to={`/markets`}>Go Shopping!</Link></button>
             </Grid.Column>
             </div>
           </Grid>

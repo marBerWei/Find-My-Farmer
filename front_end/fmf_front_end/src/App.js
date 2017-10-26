@@ -34,9 +34,9 @@ class App extends Component {
       <Route exact path="/signup" component={SignUp}/>
       <Route exact path="/login" component={LoginForm}/>
       <Route exact path="/day" component={DayOfWeekForm}/>
-      <Route exact path="/markets" component={MarketContainer}/>
+      <Route exact path="/markets" render={(props) => <MarketContainer {...props}/>}/>
       <Route exact path="/ingredients" render={(props) => <IngredientContainer {...props}/>}/>
-      <Route exact path="/recipes" component={(props) => <RecipeContainer {...props}/>}/>
+      <Route exact path="/recipes" render={(props) => <RecipeContainer {...props}/>}/>
       <Route exact path="/me" component={Profile}/>
       </div>
     );

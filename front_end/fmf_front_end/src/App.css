@@ -61,6 +61,7 @@ input[type="text"]{
 }
 
 div.cardBody {
+  padding: 20px;
   margin:0 auto;
 }
 
@@ -70,10 +71,22 @@ div.cardBody {
 
 img.table-header-img {
   margin: auto;
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 300px;
+  text-align: center;
 }
 
-/*.MarketForm.input {
-  width: 40px; 
-}*/
+div.profileBackground {
+  border: 0px solid black;
+  background: url("http://www.freedomfarmspa.com/assets/img/bg/sky.jpg");
+  background-size: 200px 200px;
+  background-repeat: no-repeat;
+  text-align: center;
+  height: 200vh;
+  width: 100%;
+  padding: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+};
+
+

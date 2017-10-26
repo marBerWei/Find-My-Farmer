@@ -42,10 +42,10 @@ class ProfileRecipeItem extends React.Component {
 
     if(localStorage.getItem("jwtToken")){
       return (
-        <div>
+        <div style={{margin:"10px"}}>
         <WebModal opened={this.state.opened} url={this.props.Recipe.f2f_url}/>
         <Card onClick= {this.onFrame}>
-           <Image src={this.props.Recipe.image_url} />
+           <div style={{overflow:"hidden",height: "200px"}}><img src={this.props.Recipe.image_url} /></div>
           <Card.Content>
             <Card.Header>
                 <h1> {this.props.Recipe.title}</h1>
@@ -55,7 +55,7 @@ class ProfileRecipeItem extends React.Component {
           </Card.Content>
             <div className="ui two buttons">
               <button 
-                style={{background: 'red', color: 'white'}}
+                style={{background: 'IndianRed', color: 'white'}}
                 className="ui button" 
                 name="recipes" 
                 value= {this.props.Recipe} 

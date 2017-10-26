@@ -7,19 +7,10 @@ const IngredientItem = (props) =>{
 	
     return (
 
-    	<div>
-	    	<div className="ui card">
-	  		  <div className="image">
-		            <img src="/images/avatar2/large/kristy.png"/>
-		          </div>
-		          <div className="content">
-		            <a className="header">{props.ingredient}</a>
-		        </div>
-		        <div className="extra content">
-		          
-		  		</div>
-			</div>
-		</div>
+		       
+		<Card>{props.ingredient}</Card>
+		        
+
 	     
     )
   }

@@ -17,30 +17,31 @@ class Profile extends React.Component {
   }
 
 
+
+
   render(){
+
+    
+
+
     let recipes
 
     if(this.props.saved_recipes.length > 0){
       let uniqueRecipes = unique(this.props.saved_recipes)
       recipes = uniqueRecipes.map(recipe => {
-        return <Card.Group><ProfileRecipeItem Recipe={recipe} /></Card.Group>
+        return <ProfileRecipeItem Recipe={recipe} />
       })
     }
     
     console.log(this.props.saved_recipes)
-
+    console.log(this.props.name)
     return (
-      <div>
-          <div className="ui blue centered card" id="user-card">
-          <div className="content">
-            <h2> First Name: {this.props.name}</h2>
-            <div className="meta">
-            <h2> Email: {this.props.email} </h2>
-            </div>
-          </div>
-        </div>
-        <div><h1>Favorite Recipes</h1></div>
-          <div>{recipes}</div>
+      <div className="profileBackground">
+
+        <div  className= "centered" style={{color:"white",size:"40px"}}><h1>{(this.props.name).slice(0,1).toUpperCase() + this.props.name.slice(1) + "'s Favorite Recipes"}</h1></div><br/>
+       
+        <Card.Group style={{margin: "0 auto"}}>{recipes}</Card.Group>
+      
     </div>
     )
   }

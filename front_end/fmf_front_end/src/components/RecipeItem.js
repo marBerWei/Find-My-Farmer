@@ -19,6 +19,7 @@ class RecipeItem extends React.Component {
     console.log(this.props.Recipe)
     this.props.handleClick(event)
     this.props.savingRecipe(this.props.Recipe, this.props.user_id)
+    alert(this.props.Recipe.title + " was saved")
   }
 
   clicked = (event) => {
@@ -46,7 +47,7 @@ class RecipeItem extends React.Component {
         <div>
         <WebModal opened={this.state.opened} url={this.props.Recipe.f2f_url}/>
         <Card onClick= {this.onFrame}>
-           <Image src={this.props.Recipe.image_url} />
+           <div style={{overflow:"hidden",height: "200px"}}><img src={this.props.Recipe.image_url} /></div>
           <Card.Content>
             <Card.Header>
                 <h1> {this.props.Recipe.title}</h1>
@@ -58,7 +59,7 @@ class RecipeItem extends React.Component {
             <div className="ui two buttons">
               <button 
                 style={{background: 'green', color: 'white'}}
-                className="ui button" 
+                className="ui primary button" 
                 name="recipes" 
                 value= {this.props.Recipe} 
                 onClick={this.onClick}
@@ -66,7 +67,7 @@ class RecipeItem extends React.Component {
               </button><br/>
               <button
                 style={{borderRadius: 2, background: 'orange'}}
-                className="ui button" 
+                className="ui primary button" 
                 name="details" 
                 value= {this.props.Recipe.source_url} 
                 onClick={this.popUp}
@@ -81,7 +82,7 @@ class RecipeItem extends React.Component {
           <div>
         <WebModal opened={this.state.opened} url={this.props.Recipe.f2f_url}/>
         <Card onClick= {this.onFrame}>
-           <Image src={this.props.Recipe.image_url} />
+           <div style={{overflow:"hidden",height: "200px"}}><img src={this.props.Recipe.image_url} /></div>
           <Card.Content>
             <Card.Header>
                 <h1> {this.props.Recipe.title}</h1>
@@ -93,7 +94,7 @@ class RecipeItem extends React.Component {
             
               <button
                 style={{borderRadius: 2, background: 'orange', color: 'white'}}
-                className="ui button" 
+                className="ui primary button" 
                 name="details" 
                 value= {this.props.Recipe.source_url} 
                 onClick={this.popUp}
