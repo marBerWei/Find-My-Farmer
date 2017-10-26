@@ -9,10 +9,8 @@ class UsersController < ApplicationController
 		@user = User.new
 	end
 
-	def getRecipes
-		@user = User.find(current_user.id)
-		@recipes = @user.recipes
-		render json: @recipes, status: 200
+	def current_user_from_token
+		render json: current_user
 	end
 
 	private

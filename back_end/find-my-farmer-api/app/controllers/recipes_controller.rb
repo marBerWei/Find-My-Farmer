@@ -6,7 +6,12 @@ class RecipesController < ApplicationController
 
 	
 	def index
-		@recipes = Recipe.all
+		if current_user
+			@recipes = current_user.recipes
+		else 
+			@recipes = Recipe.all
+		end
+		@recipes = @recipes.uniq
 		render json: @recipes, status: 200
 	end
 
