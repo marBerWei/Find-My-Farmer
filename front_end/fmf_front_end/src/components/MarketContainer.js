@@ -34,7 +34,8 @@ class MarketContainer extends React.Component {
     if(MarketObj.length === 0){
       return (
         <div>
-          <h1>These Ingredients don't seem to be available near you!</h1>
+          <h1>The ingredients for this recipe don't</h1> 
+          <h1>seem to be available at a market near you!</h1>
           <Link to="/ingredients">Go back to Ingredient List!</Link>
         </div>
 
